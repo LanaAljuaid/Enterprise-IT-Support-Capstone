@@ -56,6 +56,10 @@ class SharedState(TypedDict, total=False):
     priority: Optional[str]
     priority_reason: Optional[str]
 
-    # ---- Agents 4-7 (owned by teammates) will extend this TypedDict
-    # with their own fields, e.g. troubleshooting_steps, action_taken,
-    # is_resolved, escalation_summary, conversation_history, etc. ----
+    # ---- Agent 4: Troubleshooting output ----
+    troubleshooting_steps: List[str]
+
+    # ---- Shared across Agents 4-7 ----
+    conversation_history: List[str]
+
+    # ---- Agents 5-7 will add their own fields later ----

@@ -13,6 +13,7 @@ from agents.issue_classification import issue_classification_agent
 from agents.priority_assessment import priority_assessment_agent
 from agents.ticket_intake import ticket_intake_agent
 from state import SharedState
+from agents.troubleshooting import troubleshooting_agent
 
 
 def run_pipeline(raw_ticket_text: str, department: Optional[str] = None) -> SharedState:
@@ -28,6 +29,7 @@ def run_pipeline(raw_ticket_text: str, department: Optional[str] = None) -> Shar
     state.update(ticket_intake_agent(state))
     state.update(issue_classification_agent(state))
     state.update(priority_assessment_agent(state))
+    state.update(troubleshooting_agent(state))
 
     return state
 
@@ -45,3 +47,4 @@ if __name__ == "__main__":
 
     final_state = run_pipeline(sample_ticket, department=employee_department)
     print(json.dumps(final_state, indent=2))
+
